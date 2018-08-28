@@ -145,8 +145,12 @@ void initializeDataAndRules (
   // The $TIMEWARRIORDB environment variable overrides the default value of
   // ~/.timewarrior‥
   Directory dbLocation;
-  char* override = getenv ("TIMEWARRIORDB");
-  dbLocation = Directory (override ? override : "~/.timewarrior");
+  
+  char* overrideDb = getenv ("TIMEWARRIORDB");
+  char* overrideConfig = getenv ("TIMEWARRIORRC");
+
+  dbLocation = Directory (overrideDb ? overrideDb : "~/.taskwarrior/data.time");
+  configLocation = Directory (overrideConfig ? overrideConfig : "~/.taskwarrior");
 
   // If dbLocation exists, but is not readable/writable/executable, error.
   if (dbLocation.exists () &&
@@ -180,7 +184,7 @@ void initializeDataAndRules (
     data.create (0700);
 
   // Load the configuration data.
-  File configFile (dbLocation);
+  File configFile (configLocation);
   configFile += "timewarrior.cfg";
   configFile.create (0600);
   rules.load (configFile._data);
