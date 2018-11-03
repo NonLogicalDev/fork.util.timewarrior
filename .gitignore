@@ -1,7 +1,7 @@
+.build
 CMakeFiles
 CMakeCache.txt
 CPack*
-Makefile
 cmake.h
 commit.h
 cmake_install.cmake
