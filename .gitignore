@@ -11,4 +11,5 @@ patches
 _CPack_Packages
 CPackConfig.cmake
 CPackSourceConfig.cmake
+cmake-build-debug
 *swp

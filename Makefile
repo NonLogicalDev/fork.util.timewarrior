@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: init
 init:
 	git submodule init
 	git submodule update --checkout -f -r
@@ -7,11 +7,15 @@ init:
 clean:
 	rm -rf .build
 
-.PHONY: build
-build: .build/CMakeCache.txt
-	cd .build && make
+.PHONY: install
+install: .build/Makefile
+	make -C .build install
 
-.build/CMakeCache.txt: CMakeLists.txt
+.PHONY: build
+build: .build/Makefile
+	make -C .build
+
+.build/Makefile: CMakeLists.txt
 	mkdir -p .build
 	cd .build && cmake ..
 

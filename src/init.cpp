@@ -145,7 +145,8 @@ void initializeDataAndRules (
   // The $TIMEWARRIORDB environment variable overrides the default value of
   // ~/.timewarrior‥
   Directory dbLocation;
-  
+  Directory configLocation;
+
   char* overrideDb = getenv ("TIMEWARRIORDB");
   char* overrideConfig = getenv ("TIMEWARRIORRC");
 
